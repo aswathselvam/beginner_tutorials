@@ -1,10 +1,11 @@
 // Copyright 2021 Aswath Muthuselvam
 
-#ifndef INCLUDE_LISTENER_H_
-#define INCLUDE_LISTENER_H_
+#ifndef INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_
+#define INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_
 
 #include "ros/ros.h"
-#include "std_msgs/String.h"
+
+ros::NodeHandle* n;
 
 /**
  * This is a subscriber object, to receive the message published under a given
@@ -12,4 +13,4 @@
  */
 ros::Subscriber sub;
 
-#endif  // INCLUDE_LISTENER_H_
+#endif  // INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_

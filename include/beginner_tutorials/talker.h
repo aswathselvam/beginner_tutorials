@@ -1,14 +1,16 @@
 // Copyright 2021 Aswath Muthuselvam
 
-#ifndef INCLUDE_TALKER_H_
-#define INCLUDE_TALKER_H_
+#ifndef INCLUDE_BEGINNER_TUTORIALS_TALKER_H_
+#define INCLUDE_BEGINNER_TUTORIALS_TALKER_H_
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 
+ros::NodeHandle* n;
+
 /**
  * Publisher object which publishes the data under the given topic name.
- */ 
+ */
 ros::Publisher chatter_pub;
 
 /**
@@ -27,4 +29,4 @@ std_msgs::String msg;
  */
 std::stringstream ss;
 
-#endif  // INCLUDE_TALKER_H_
+#endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_H_
