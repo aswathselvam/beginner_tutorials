@@ -4,7 +4,8 @@
 #define INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_
 
 #include "ros/ros.h"
-#include "std_msgs/String.h"
+
+ros::NodeHandle* n;
 
 /**
  * This is a subscriber object, to receive the message published under a given

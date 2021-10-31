@@ -6,9 +6,11 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 
+ros::NodeHandle* n;
+
 /**
  * Publisher object which publishes the data under the given topic name.
- */ 
+ */
 ros::Publisher chatter_pub;
 
 /**
