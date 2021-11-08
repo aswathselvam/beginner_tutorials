@@ -32,8 +32,22 @@
 #define INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_
 
 #include "ros/ros.h"
+#include "beginner_tutorials/Kill.h"
+#include <std_srvs/Empty.h>
 
-ros::NodeHandle* n;
+
+/*
+ * @brief Service function that is called with /service, this function changes
+ * the message according to the user's input.
+ * @return bool flag indicating success or failure of service method. 
+ */
+bool KillService(std_srvs::Empty::Request&, std_srvs::Empty::Response&);
+
+ros::NodeHandle* n;  ///< Instance of Node Handler object
+
+bool stop;  ///< Checks if kill signal is received from service.
+
+ros::ServiceServer service;  ///< Service object
 
 /**
  * This is a subscriber object, to receive the message published under a given
