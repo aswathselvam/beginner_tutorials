@@ -5,7 +5,7 @@ project(beginner_tutorials)
 # add_compile_options(-std=c++11)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg message_generation)
 
 ## Generate added messages and services
 generate_messages(DEPENDENCIES std_msgs)
@@ -15,6 +15,12 @@ catkin_package()
 
 ## Build talker and listener
 include_directories(include ${catkin_INCLUDE_DIRS})
+
+## Add service file
+add_service_files(
+  FILES
+  service.srv
+)
 
 add_executable(talker src/talker.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
