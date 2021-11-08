@@ -35,6 +35,7 @@
 #include "beginner_tutorials/service.h"
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include <string>
 
 bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
                beginner_tutorials::service::Response &res) {  // NOLINT
@@ -75,7 +76,9 @@ int main(int argc, char **argv) {
    * The first NodeHandle constructed will fully initialize this node, and the
    * last NodeHandle destructed will close down the node.
    */
-  n = new ros::NodeHandle;
+  n = new ros::NodeHandle();
+
+  n->getParam("message", msg.data);
 
   ros::Rate loop_rate(10);
 
