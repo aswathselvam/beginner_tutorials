@@ -1,16 +1,62 @@
-// Copyright 2021 Aswath Muthuselvam
+/**
+ * MIT License
+ *
+ * Copyright (c) 2021 Aswath Muthuselvam
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * @file talker.cpp
+ * @author Aswath Muthuselvam
+ * @date 08th November 2021
+ * @brief Talker file, publishes string.
+ *
+ */
 
 #include "beginner_tutorials/talker.h"
 
 #include <sstream>
 
+#include "beginner_tutorials/service.h"
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+
+bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
+               beginner_tutorials::service::Response &res) {  // NOLINT
+  ROS_INFO_STREAM("Service /service is called");
+  if (req.service_input.empty()) {
+    ROS_ERROR_STREAM("Input string from ROS service is empty!");
+    return false;
+  } else {
+    ROS_DEBUG_STREAM("Received message: " << req.service_input);
+    ROS_WARN_STREAM("Publisher message will be changed.");
+    msg.data = req.service_input;
+    res.service_output = "Successfully changed message";
+    return true;
+  }
+}
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
  */
 int main(int argc, char **argv) {
+  msg.data = " Hello Terps! ";
+
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
    * any ROS arguments and name remapping that were provided at the command
@@ -52,10 +98,11 @@ int main(int argc, char **argv) {
    */
   chatter_pub = n->advertise<std_msgs::String>("chatter", 1000);
 
+  service = n->advertiseService("service", &MyService);
+
   count = 0;
   while (ros::ok()) {
-    ss << "\n Hello Terps! " << count;
-    msg.data = ss.str();
+    ss << msg.data << count;
 
     ROS_INFO("%s", msg.data.c_str());
 
@@ -74,6 +121,6 @@ int main(int argc, char **argv) {
   }
 
   delete n;
-  
+
   return 0;
 }
