@@ -5,7 +5,15 @@ project(beginner_tutorials)
 # add_compile_options(-std=c++11)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg message_generation)
+find_package(catkin REQUIRED 
+  COMPONENTS 
+  roscpp 
+  rospy 
+  std_msgs 
+  genmsg
+  message_generation 
+  roslaunch
+ )
 
 ## Add service file
 add_service_files(
