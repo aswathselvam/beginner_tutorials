@@ -12,11 +12,12 @@ find_package(catkin REQUIRED
   std_msgs 
   genmsg
   message_generation 
+  std_srvs
   roslaunch
  )
 
 ## Add service file
-add_service_files(
+add_service_files(DIRECTORY srv
   FILES
   service.srv
 )

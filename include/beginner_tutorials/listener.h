@@ -31,15 +31,15 @@
 #ifndef INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_
 #define INCLUDE_BEGINNER_TUTORIALS_LISTENER_H_
 
-#include "ros/ros.h"
-#include "beginner_tutorials/Kill.h"
 #include <std_srvs/Empty.h>
 
+#include "beginner_tutorials/Kill.h"
+#include "ros/ros.h"
 
 /*
  * @brief Service function that is called with /service, this function changes
  * the message according to the user's input.
- * @return bool flag indicating success or failure of service method. 
+ * @return bool flag indicating success or failure of service method.
  */
 bool KillService(std_srvs::Empty::Request&, std_srvs::Empty::Response&);
 

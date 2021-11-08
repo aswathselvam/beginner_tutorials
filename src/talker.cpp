@@ -31,11 +31,11 @@
 #include "beginner_tutorials/talker.h"
 
 #include <sstream>
+#include <string>
 
 #include "beginner_tutorials/service.h"
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include <string>
 
 bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
                beginner_tutorials::service::Response &res) {  // NOLINT
