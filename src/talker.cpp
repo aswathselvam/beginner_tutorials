@@ -30,17 +30,16 @@
 
 #include "beginner_tutorials/talker.h"
 
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <tf/transform_broadcaster.h>
+
 #include <sstream>
 #include <string>
 
 #include "beginner_tutorials/service.h"
-#include <ros/ros.h>
-#include <std_msgs/String.h>
-#include <tf/transform_broadcaster.h>
-#include <turtlesim/Pose.h>
 
 std::string turtle_name;
-
 
 bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
                beginner_tutorials::service::Response &res) {  // NOLINT
@@ -57,14 +56,15 @@ bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
   }
 }
 
-void BroadcastTF(){
+void BroadcastTF() {
   static tf::TransformBroadcaster br;
   tf::Transform transform;
-  transform.setOrigin( tf::Vector3(0.1, 0.2, 0.0) );
+  transform.setOrigin(tf::Vector3(0.1, 0.2, 0.0));
   tf::Quaternion q;
   q.setRPY(0.1, 0.1, 0.1);
   transform.setRotation(q);
-  br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+  br.sendTransform(
+      tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
 }
 
 /**
@@ -131,9 +131,9 @@ int main(int argc, char **argv) {
      * in the constructor above.
      */
     chatter_pub.publish(msg);
-    
+
     BroadcastTF();
-    
+
     ros::spinOnce();
 
     loop_rate.sleep();
