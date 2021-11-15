@@ -14,6 +14,7 @@ find_package(catkin REQUIRED
   message_generation 
   std_srvs
   roslaunch
+  tf
  )
 
 ## Add service file
