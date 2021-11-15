@@ -57,8 +57,7 @@ TEST(TestStub, TestMessageChangeService) {
   beginner_tutorials::service::Request req;
   beginner_tutorials::service::Response res;
   req.service_input = "Changing service message by ROS";
-  std::string expectedString = req.service_input;
-  bool success = service_client.call(req, res);
+  service_client.call(req, res);
   EXPECT_EQ("Successfully changed message", res.service_output);
 }
 

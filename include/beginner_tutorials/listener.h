@@ -33,7 +33,6 @@
 
 #include <std_srvs/Empty.h>
 
-#include "beginner_tutorials/Kill.h"
 #include "ros/ros.h"
 
 /*

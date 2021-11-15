@@ -39,8 +39,6 @@
 
 #include "beginner_tutorials/service.h"
 
-std::string turtle_name;
-
 bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
                beginner_tutorials::service::Response &res) {  // NOLINT
   ROS_INFO_STREAM("Service /service is called");
