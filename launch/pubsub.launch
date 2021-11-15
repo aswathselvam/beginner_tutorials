@@ -11,7 +11,7 @@
 
     <node pkg = "beginner_tutorials" type = "listener" name = "subscriber_node" output = "screen" />
 
-    <node pkg="rosbag" name="rosbag_node" type="rosbag_node" args="-a -O $(find beginner_tutorials)/results/bagfile_talker"
+    <node pkg="rosbag" type="record" name="rosbag_node" args="-a -O $(find beginner_tutorials)/results/bagfile_talker --duration=15"
         if="$(arg rosbag_record)"/>
 
 </launch>
