@@ -60,6 +60,38 @@ Launch both talker and subscriber node:
 roslaunch beginner_tutorials pubsub.launch message:="your-custom-message"
 ```
 
+## View ROS TF Frames
+```
+rosrun tf tf_echo /world /talk
+rosrun rqt_tf_tree rqt_tf_tree
+```
+Save TF frame to pdf:
+```
+rosrun tf view_frames
+```
+
+## Run ROS Test
+Make tests
+```
+catkin_make tests
+catkin_make test
+```
+Run the Test case Launch file:
+```
+rostest beginner_tutorials pubsub_test.launch 
+```
+
+## ROS Bag
+To record talker node's messages with ROS Bag.
+```
+roslaunch beginner_tutorials pubsub.launch rosbag_record:=true
+```
+
+To play the bag file:
+```
+rosbag play "path-to-bag-file"
+```
+
 ## Code Formatting check 
 ### Cpplint:
 ```
