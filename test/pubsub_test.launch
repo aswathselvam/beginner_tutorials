@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="beginner_tutorials" type="talker" name="publisher_node" />
+  <test pkg="beginner_tutorials" type="testpubsub" test-name="testpubsub"/>
+</launch>
