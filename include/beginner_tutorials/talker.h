@@ -47,6 +47,11 @@
 bool MyService(beginner_tutorials::service::Request &req,    // NOLINT
                beginner_tutorials::service::Response &res);  // NOLINT
 
+/*
+ * @brief Function that broadcasts TF frame.
+ */
+void BroadcastTF();  // NOLINT
+
 ros::NodeHandle *n;  ///< The node handle of talker node. It contains publisher
                      ///< and service information.
 
