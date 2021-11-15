@@ -92,6 +92,9 @@ To play the bag file:
 rosbag play "path-to-bag-file"
 ```
 
+Run the listener node to inspect the contents of the bag-file with topic name "/chatter". Other 
+topics that maybe recorded can be viewed with "rostopic list"
+
 ## Code Formatting check 
 ### Cpplint:
 ```
