@@ -34,8 +34,13 @@
 #include <string>
 
 #include "beginner_tutorials/service.h"
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <tf/transform_broadcaster.h>
+#include <turtlesim/Pose.h>
+
+std::string turtle_name;
+
 
 bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
                beginner_tutorials::service::Response &res) {  // NOLINT
@@ -50,6 +55,16 @@ bool MyService(beginner_tutorials::service::Request &req,     // NOLINT
     res.service_output = "Successfully changed message";
     return true;
   }
+}
+
+void BroadcastTF(){
+  static tf::TransformBroadcaster br;
+  tf::Transform transform;
+  transform.setOrigin( tf::Vector3(0.1, 0.2, 0.0) );
+  tf::Quaternion q;
+  q.setRPY(0.1, 0.1, 0.1);
+  transform.setRotation(q);
+  br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
 }
 
 /**
@@ -69,7 +84,7 @@ int main(int argc, char **argv) {
    * You must call one of the versions of ros::init() before using any other
    * part of the ROS system.
    */
-  ros::init(argc, argv, "talker");
+  ros::init(argc, argv, "talker_node");
 
   /**
    * NodeHandle is the main access point to communications with the ROS system.
@@ -116,7 +131,9 @@ int main(int argc, char **argv) {
      * in the constructor above.
      */
     chatter_pub.publish(msg);
-
+    
+    BroadcastTF();
+    
     ros::spinOnce();
 
     loop_rate.sleep();
