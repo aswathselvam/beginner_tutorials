@@ -2,6 +2,7 @@
 
 <launch>
     <arg name="message" default="This is a default message argument from pubsub.launch" doc="message argument"/>
+    <arg name="rosbag_record" default="false" doc="Set to true to record talker messages in bag file"/>
 
     <group>
     <node pkg = "beginner_tutorials" type = "talker" name = "publisher_node" output = "screen" />
@@ -9,5 +10,8 @@
     </group>
 
     <node pkg = "beginner_tutorials" type = "listener" name = "subscriber_node" output = "screen" />
+
+    <node pkg="rosbag" name="rosbag_node" type="rosbag_node" args="-a -O $(find beginner_tutorials)/results/bagfile_talker"
+        if="$(arg rosbag_record)"/>
 
 </launch>
